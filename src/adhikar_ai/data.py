@@ -20,7 +20,10 @@ def read_document(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def load_charter_files(charter_dir: Path = CHARTER_DIR) -> list[PolicyChunk]:
+def load_charter_files(
+    charter_dir: Path = CHARTER_DIR,
+    text_splitter=None,
+) -> list[PolicyChunk]:
     chunks: list[PolicyChunk] = []
     if not charter_dir.exists():
         return chunks
@@ -29,7 +32,11 @@ def load_charter_files(charter_dir: Path = CHARTER_DIR) -> list[PolicyChunk]:
         if path.suffix.lower() not in {".pdf", ".txt", ".md"}:
             continue
         content = read_document(path)
-        for index, chunk in enumerate(split_text(content, chunk_size=1000, overlap=200)):
+        if text_splitter is not None:
+            split_chunks = text_splitter.split_text(content)
+        else:
+            split_chunks = split_text(content, chunk_size=1000, overlap=200)
+        for index, chunk in enumerate(split_chunks):
             chunks.append(
                 PolicyChunk(
                     text=chunk,
@@ -78,6 +85,9 @@ def load_analytics() -> list[dict]:
 class HashEmbeddingFunction:
     def __init__(self, dimensions: int = 64):
         self.dimensions = dimensions
+
+    def name(self) -> str:
+        return "hash_embedding"
 
     def __call__(self, input):  # chromadb expects this signature
         return [self._embed(text) for text in input]
