@@ -1,0 +1,6 @@
+DNCC Citizen Charter Sample
+
+Waste services: Garbage collection should be completed within 48 hours of a registered complaint.
+Road services: Unsafe potholes should be inspected within 72 hours.
+Electrical services: Reported street light faults should be acknowledged within 24 hours.
+Water services: Drainage overflow complaints should receive a response within 24 hours.

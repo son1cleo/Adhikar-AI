@@ -1,0 +1,6 @@
+DSCC Citizen Charter Sample
+
+Waste services: Garbage collection should be completed within 48 hours of a registered complaint.
+Road services: Damaged road surfaces should be inspected within 72 hours.
+Electrical services: Faulty public lighting should be acknowledged within 24 hours.
+Water services: Waterlogging and drainage complaints should receive a response within 24 hours.
